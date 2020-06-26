@@ -1,0 +1,15 @@
+{
+  "name": "stackathon-project",
+  "version": "1.0.0",
+  "description": "XRP Live Room Demo",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "author": "Cesar Done",
+  "license": "MIT",
+  "dependencies": {
+    "bip39": "^3.0.2",
+    "xpring-js": "^5.0.0"
+  }
+}
