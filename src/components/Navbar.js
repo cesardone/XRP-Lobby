@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Nav,
   Navbar,
@@ -26,7 +27,7 @@ export default (props) => {
           <Nav>
             <NavItem>
               <NavLink href='/'>Login</NavLink>
-              <NavLink href='/home'>Home</NavLink>
+              <NavLink href='/lobby'>Lobby</NavLink>
             </NavItem>
           </Nav>
         </Collapse>

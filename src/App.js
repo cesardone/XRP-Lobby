@@ -12,7 +12,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path='/' component={Login} />
-        <Route path='/home' component={Lobby} />
+        <Route path='/lobby' component={Lobby} />
       </Switch>
     </div>
   );

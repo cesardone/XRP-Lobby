@@ -9,6 +9,16 @@ const PORT = process.env.PORT || 5000;
 io.on('connection', (socket) => {
   console.log('We have a new connection!');
 
+  socket.on('login', ({ name }, callback) => {
+    console.log(name);
+
+    const userInfo = {
+      name: name,
+      token: 'XRP',
+    };
+    callback(userInfo);
+  });
+
   socket.on('disconnect', () => {
     console.log('User has left');
   });

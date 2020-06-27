@@ -15,14 +15,15 @@ import {
 
 export default () => {
   const [name, setName] = useState('');
-  const [room, setRoom] = useState('');
 
-  const handleClick = (evt) => {
-    // !name ? evt.preventDefault() : evt.preventDefault();
-    evt.preventDefault();
-    setName('');
-    console.log(name);
+  const handleSubmit = (evt) => {
+    if (!name) {
+      evt.preventDefault();
+    } else {
+      setName('');
+    }
   };
+
   return (
     <div>
       <h2 className='text-center'> Login </h2>
@@ -37,6 +38,9 @@ export default () => {
                 onChange={(evt) => {
                   setName(evt.target.value);
                 }}
+                onKeyUp={(evt) => {
+                  evt.preventDefault();
+                }}
                 value={name}
               />
               <InputGroupAddon addonType='append'>
@@ -44,15 +48,24 @@ export default () => {
               </InputGroupAddon>
             </InputGroup>
           </FormGroup>
-          <Button
-            className='btn-lg btn-dark btn-block'
-            type='submit'
-            onClick={(evt) => {
-              handleClick(evt);
+          <Link
+            to={{
+              pathname: '/lobby',
+              name: {
+                name,
+              },
             }}
           >
-            Log In
-          </Button>
+            <Button
+              className='btn-lg btn-dark btn-block'
+              type='submit'
+              onClick={(evt) => {
+                handleSubmit(evt);
+              }}
+            >
+              Log In
+            </Button>
+          </Link>
         </Form>
       </Card>
     </div>
