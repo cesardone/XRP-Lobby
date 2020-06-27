@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  align-items: center;
 }
 
 .App-logo {
@@ -35,4 +36,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.loginForm {
+  width: 100%;
+  max-width: 450px;
+  padding: 15px;
+  margin: auto;
+  height: 100%;
 }
