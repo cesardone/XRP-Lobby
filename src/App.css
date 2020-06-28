@@ -45,3 +45,11 @@
   margin: auto;
   height: 100%;
 }
+
+.active-users-card {
+  width: 100%;
+  max-width: 625px;
+  padding: 15px;
+  margin: auto;
+  height: 100%;
+}
