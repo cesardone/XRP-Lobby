@@ -53,3 +53,19 @@
   margin: auto;
   height: 100%;
 }
+
+.jumbo {
+  width: 100%;
+  max-width: 900px;
+  padding: 15px;
+  margin: auto;
+  height: 100%;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 15px;
+  background-color: white;
+}

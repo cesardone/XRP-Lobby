@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
 import {
   Card,
@@ -15,11 +14,13 @@ import {
   ModalFooter,
   CardSubtitle,
   FormGroup,
+  Spinner,
 } from 'reactstrap';
 
 let socket;
 let name;
 let sendXRP = {};
+let spin = false;
 const ENDPOINT = 'localhost:5000';
 socket = io(ENDPOINT);
 
@@ -87,24 +88,19 @@ export default (props) => {
       socket.emit('send', { amount, sendingWallet, recievingAddress });
 
       toggle();
+      spin = true;
     }
   };
 
+  // Updates Wallet when user sends XRP to one another
   useEffect(() => {
-    socket.on('hey', () => {
+    socket.on('wallet', () => {
       socket.emit('updated wallets', { accData }, (data) => {
-        console.log('hello');
         setAccData({ ...accData, balance: data });
       });
+      spin = false;
     });
   });
-
-  // Update wallet info
-  // useEffect(() => {
-  //   socket.on('update', () => {
-  //
-  //   });
-  // });
 
   // Toggles the popup
   const toggle = () => setModal(!modal);
@@ -141,18 +137,20 @@ export default (props) => {
                 Send XRP to: {sendXRP.name}
               </ModalHeader>
               <ModalBody>How Much would you like to send?</ModalBody>
-              <FormGroup>
-                <Input
-                  placeholder='Amount of XRP'
-                  type='number'
-                  onChange={(evt) => {
-                    sendXRP.amount = evt.target.value;
-                  }}
-                  onKeyUp={(evt) => {
-                    evt.preventDefault();
-                  }}
-                />
-              </FormGroup>
+              <ModalBody>
+                <FormGroup>
+                  <Input
+                    placeholder='Amount of XRP'
+                    type='number'
+                    onChange={(evt) => {
+                      sendXRP.amount = evt.target.value;
+                    }}
+                    onKeyUp={(evt) => {
+                      evt.preventDefault();
+                    }}
+                  />
+                </FormGroup>
+              </ModalBody>
 
               <ModalFooter>
                 <Button
@@ -160,7 +158,7 @@ export default (props) => {
                   type='submit'
                   onClick={async (evt) => await handleSend(evt)}
                 >
-                  Do Something
+                  Send XRP!
                 </Button>
                 <Button onClick={toggle}>Cancel</Button>
               </ModalFooter>
@@ -176,7 +174,8 @@ export default (props) => {
           <CardTitle>Your Account Information</CardTitle>
           <CardSubtitle>PayID: {name}</CardSubtitle>
           <CardSubtitle>XRP Address: {accData.walletAddress}</CardSubtitle>
-          <CardSubtitle>Your Balance: {accData.balance}</CardSubtitle>
+          <div>{spin ? <Spinner type='grow' /> : null}</div>
+          <CardSubtitle>Your Balance: {accData.balance} XRP</CardSubtitle>
         </CardBody>
       </Card>
       {/* User Info */}

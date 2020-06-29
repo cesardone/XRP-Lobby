@@ -2,16 +2,8 @@ const app = require('express')();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const router = require('./router');
-const { addUser, removeUser, getUser, allUsers } = require('./users');
-const {
-  genWallet,
-  fundWallet,
-  getInfo,
-  displayTestNetBalance,
-  getBalance,
-  generateNFund,
-  sendXRP,
-} = require('../xrp/xrp.js');
+const { addUser, removeUser, allUsers } = require('./users');
+const { getBalance, generateNFund, sendXRP } = require('../xrp/xrp.js');
 
 // PORT
 const PORT = process.env.PORT || 5000;
@@ -36,12 +28,13 @@ io.on('connection', (socket) => {
     const hash = await sendXRP(amount, sendingWallet, recievingAddress);
     console.log(hash);
 
-    io.emit('hey');
-    socket.on('updated wallets', async ({ accData }, balance) => {
-      const bal = await getBalance(accData.walletAddress);
-      console.log(bal);
-      balance(bal);
-    });
+    io.emit('wallet');
+  });
+
+  socket.on('updated wallets', async ({ accData }, balance) => {
+    const bal = await getBalance(accData.walletAddress);
+    console.log(bal);
+    balance(bal);
   });
 
   socket.on('disconnect', () => {

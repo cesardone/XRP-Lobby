@@ -1,11 +1,4 @@
-const {
-  Wallet,
-  XrpClient,
-  XrplNetwork,
-  Utils,
-  XrpPayIdClient,
-  XpringClient,
-} = require('xpring-js');
+const { Wallet, XrpClient, XrplNetwork } = require('xpring-js');
 
 // TestNet Wallet Generation
 const seedWallet = Wallet.generateWalletFromSeed(
@@ -40,14 +33,14 @@ const getInfo = async (newWalletAddy, newWallet) => {
 
   return {
     walletAddress: newWalletAddy,
-    balance: Number(newWalletBalance.value),
+    balance: Number(newWalletBalance.value) / 1000000,
     walletData: newWallet,
   };
 };
 
 const getBalance = async (walletAddy) => {
   const newWalletBalance = await xrpClient.getBalance(walletAddy);
-  return Number(newWalletBalance.value);
+  return Number(newWalletBalance.value) / 1000000;
 };
 
 const displayTestNetBalance = async () => {
@@ -64,7 +57,7 @@ const generateNFund = async () => {
 
 const sendXRP = async (amount, sendingWallet, recievingAddress) => {
   // eslint-disable-next-line no-undef
-  const bigAmount = BigInt(amount);
+  const bigAmount = BigInt(amount * 1000000);
   sendingWallet = Wallet.generateWalletFromMnemonic(sendingWallet.mnemonic);
   try {
     const transHash = await xrpClient.send(

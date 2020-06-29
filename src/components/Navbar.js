@@ -10,7 +10,7 @@ import {
   NavLink,
 } from 'reactstrap';
 
-export default (props) => {
+export default () => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggleNavbar = () => setCollapsed(!collapsed);
@@ -19,15 +19,26 @@ export default (props) => {
     <div>
       <Navbar color='faded' light>
         {/* Title */}
-        <NavbarBrand href='/' className='mr-auto'>
-          XRP Lobby
-        </NavbarBrand>
+        <NavbarBrand className='mr-auto'>XRP Lobby</NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} />
         <Collapse isOpen={!collapsed} navbar>
           <Nav>
             <NavItem>
-              <NavLink href='/'>Login</NavLink>
-              <NavLink href='/lobby'>Lobby</NavLink>
+              <NavLink>
+                <Link to='/' onClick={toggleNavbar}>
+                  Login
+                </Link>
+              </NavLink>
+              <NavLink>
+                <Link to='/lobby' onClick={toggleNavbar}>
+                  Lobby
+                </Link>
+              </NavLink>
+              <NavLink>
+                <Link to='/xrp' onClick={toggleNavbar}>
+                  What is XRP?
+                </Link>
+              </NavLink>
             </NavItem>
           </Nav>
         </Collapse>
