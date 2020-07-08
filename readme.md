@@ -27,10 +27,15 @@ XRP in specific has potential to be a great token for the future of the internet
 * [React Router](https://reacttraining.com/react-router/)
 
 ## Here's the app in action!
+#### Logging in as a user:
 ![Logging in as a user](https://github.com/cesardone/XRP-Lobby/blob/master/GIFS/Logging%20in.gif)
+#### Logged in user:
 ![Logged in user](https://github.com/cesardone/XRP-Lobby/blob/master/GIFS/logged%20in.gif)
+#### Sending XRP to a user:
 ![Sending XRP to a user](https://github.com/cesardone/XRP-Lobby/blob/master/GIFS/Sending.gif)
+#### Transaction Hash:
 ![Transaction Hash](https://github.com/cesardone/XRP-Lobby/blob/master/GIFS/Testnet.gif)
+#### More than 1 user:
 ![More than 1 user](https://github.com/cesardone/XRP-Lobby/blob/master/GIFS/3rd%20User.gif)
 
 
