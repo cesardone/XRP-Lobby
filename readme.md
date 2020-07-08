@@ -27,7 +27,7 @@ XRP in specific has potential to be a great token for the future of the internet
 * [React Router](https://reacttraining.com/react-router/)
 
 ## Here's the app in action!
-* [More than 1 user](https://github.com/cesardone/XRP-Lobby/blob/master/GIFS/3rd%20User.gif)
+![More than 1 user](https://github.com/cesardone/XRP-Lobby/blob/master/GIFS/3rd%20User.gif)
 
 
 
